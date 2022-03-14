@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+/*************************************快速同步*************************************/
+message FastSyncGetHashReq
+{
+    string                 self_node_id       = 1;
+    string                 msg_id             = 2;
+    uint64                 start_height       = 3;
+    uint64                 end_height         = 4;
+}
+
+message FastSyncGetHashAck
+{
+    string                 self_node_id       = 1;
+    string                 msg_id             = 2;
+    uint64                 node_block_height  = 3;
+    string                 hash               = 4;
+}
+
+message FastSyncGetBlockReq
+{
+    string                 self_node_id       = 1;
+    string                 msg_id             = 2;
+    uint64                 start_height       = 3;
+    uint64                 end_height         = 4;
+}
+
+message FastSyncGetBlockAck
+{
+    string                 msg_id             = 1;
+    repeated bytes         blocks             = 2;
+}
+
+/*************************************新同步*************************************/
+message SyncGetSumHashReq
+{
+    string                 self_node_id       = 1;
+    string                 msg_id             = 2;
+    uint64 		           start_height	      = 3;
+    uint64 		           end_height		  = 4;
+}
+
+message SyncSumHash
+{
+    uint64 		           start_height	      = 1;
+    uint64 		           end_height		  = 2;
+    string                 hash               = 3;
+}
+
+message SyncGetSumHashAck
+{
+    string                  self_node_id       = 1;
+    string                  msg_id             = 2;
+    uint64 		            node_block_height  = 3;
+    repeated SyncSumHash    sync_sum_hashes    = 4;
+}
+
+message SyncGetHeightHashReq
+{
+    string                  self_node_id       = 1;
+    string                  msg_id             = 2;
+    uint64 		            start_height       = 3;
+    uint64 		            end_height		   = 4;
+}
+
+message SyncGetHeightHashAck
+{
+    string                  self_node_id       = 1;
+    string                  msg_id             = 2;
+    repeated string         block_hashes       = 3;
+}
+
+message SyncGetBlockReq
+{
+    string                  self_node_id       = 1;
+    string                  msg_id             = 2;
+    repeated string         block_hashes       = 3;
+}
+
+message SyncGetBlockAck
+{
+    string                  msg_id             = 1;
+    repeated bytes          blocks             = 2;
+}

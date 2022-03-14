@@ -1,0 +1,158 @@
+syntax                  = "proto3";
+
+import "transaction.proto";
+
+//打印消息测试
+message PrintMsgReq 
+{
+    string data         = 1;
+    int32  type         = 2;
+}
+
+
+//node
+message NodeInfo 
+{
+  bytes pub = 1;
+  bytes sign = 2;
+  string base58addr = 3;
+  string public_base58addr = 4;
+  uint32 listen_ip = 5;
+  uint32 listen_port = 6;
+  uint32 public_ip = 7;
+  uint32 public_port = 8;  
+  bool   is_public_node = 9;
+  uint32 height = 10;
+  uint64 sign_fee = 11;
+  uint64 package_fee = 12;
+  string version = 13;
+}
+
+//向转发节点获取所有节点
+message RegisterNodeReq 
+{
+  NodeInfo mynode = 1;
+  bool     is_get_nodelist = 2;
+}
+
+//向转发节点获取所有节点 返回
+message RegisterNodeAck 
+{
+  repeated NodeInfo nodes = 1;
+}
+
+//同步节点
+message SyncNodeReq 
+{
+  repeated string ids = 1;
+  repeated NodeInfo nodes = 2;  //连接自身节点的内网节点
+}
+
+//同步节点返回
+message SyncNodeAck 
+{
+  repeated NodeInfo nodes = 1;   //公网有我没有的节点
+  repeated string ids = 2;        //我有公网没有的节点id
+}
+
+
+//向对等节点发起连接请求
+message ConnectNodeReq 
+{
+  NodeInfo mynode = 1;
+}
+
+//向局域网发送广播
+message BroadcastNodeReq {
+  NodeInfo mynode = 1;
+}
+
+//通过外网转发数据请求
+message TransMsgReq 
+{
+  NodeInfo dest = 1;
+  bytes data  = 2;
+  uint32 priority = 3;  
+}
+
+message BroadcaseMsgReq
+{
+  NodeInfo from = 1;
+  bytes data = 2;
+  uint32 priority = 3;
+}
+
+//外转内通知
+message NotifyConnectReq 
+{
+  NodeInfo server_node = 1;
+  NodeInfo client_node = 2;  
+}
+
+
+message PingReq 
+{
+  string id        = 1;
+}
+
+message PongReq 
+{
+  string id        = 1;
+  uint32 chain_height = 2;
+}
+
+
+message EchoReq 
+{
+  string id = 1;
+}
+
+message EchoAck 
+{
+  string id = 1;
+}
+
+message UpdateFeeReq 
+{
+  string id           = 1;
+  uint64 fee          = 2;
+}
+
+message UpdatePackageFeeReq 
+{
+  string id           = 1;
+  uint64 package_fee  = 2;
+}
+
+message GetNodeCacheReq {
+  string id = 1;
+  bool is_fetch_public = 2;
+  uint32 node_height = 3;
+}
+
+message NodeCacheItem {
+  string base58addr = 1;
+  uint32 height = 2;  
+  uint64 fee = 3;
+  bool is_public = 4;
+}
+
+message GetNodeCacheAck {
+  repeated NodeCacheItem nodes_height = 1;
+  repeated NodeInfo public_nodes = 2;
+}
+
+message GetTransInfoReq{
+    string txid = 1;
+    string nodeid = 2;
+}
+message GetTransInfoAck{
+  CTransaction trans = 1;
+  uint32 height = 2;
+}
+
+message NodeHeightChangedReq
+{
+  string id = 1;
+  uint32 height = 2;
+}

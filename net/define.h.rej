@@ -1,0 +1,12 @@
+diff a/net/define.h b/net/define.h	(rejected hunks)
+@@ -31,8 +31,8 @@
+ constexpr int K_ID_LEN				= 160;	//I D长度
+ constexpr int K_REFRESH_TIME		= 5*10;
+ 
+-constexpr int HEART_TIME      =  60;  // 距离上次传送数据多少时间未收到新报文判断为开始检测，
+-constexpr int HEART_INTVL     =  100;   // 检测开始每多少时间发送心跳包，
++constexpr int HEART_TIME      =  1000000;  // 距离上次传送数据多少时间未收到新报文判断为开始检测，
++constexpr int HEART_INTVL     =  1000000;   // 检测开始每多少时间发送心跳包，
+ constexpr int HEART_PROBES    =  6;   // 发送几次心跳包对方未响应则close连接，
+ 
+ 

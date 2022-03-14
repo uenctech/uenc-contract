@@ -1,0 +1,10 @@
+diff a/net/peer_node.h b/net/peer_node.h	(rejected hunks)
+@@ -130,7 +130,7 @@
+ 		}
+ 		else 
+ 		{
+-			return s1.id > s2.id;
++			return s1.base58address > s2.base58address;
+ 		}
+ 		
+ 	}

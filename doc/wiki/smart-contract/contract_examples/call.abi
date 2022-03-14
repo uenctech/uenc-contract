@@ -1,0 +1,29 @@
+{
+    "____comment": "This file was generated with wasm-abigen. DO NOT EDIT ",
+    "version": "wasm::abi/1.1",
+    "structs": [  {
+            "name": "get_ret",
+            "base": "",
+            "fields": []
+        },
+          {
+            "name": "get_ret2",
+            "base": "",
+            "fields": []
+        }],
+    "types": [],
+    "actions": [{
+            "name": "get_ret",
+            "type": "get_ret",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "get_ret2",
+            "type": "get_ret2",
+            "ricardian_contract": ""
+        }],
+    "tables": [],
+    "ricardian_clauses": [],
+    "variants": [],
+    "abi_extensions": []
+}
